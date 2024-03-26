@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh """
                   echo "version is: ${params.version}"
-                  echo "version is: ${params.environment}"
+                  echo "environment is: ${params.environment}"
                 """
             }
         }
