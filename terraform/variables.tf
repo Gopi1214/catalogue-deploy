@@ -23,3 +23,7 @@ variable "environment" {
 variable "zone_name" {
   default = "pjdevops.online"
 }
+
+variable "app_version" {
+  
+}
