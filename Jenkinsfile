@@ -16,6 +16,7 @@ pipeline {
     parameters {
         string(name: 'version', defaultValue: '', description: 'what is the artifact version?')
         string(name: 'environment', defaultValue: '', description: 'what is the environment?')
+        string(name: 'options', choices: ['apply','destroy'], description: 'pick option u want?')
     }
 
     // Build
@@ -44,6 +45,33 @@ pipeline {
                 """
             }
         }
+        stage('terraform apply') { 
+            when { 
+                expression { 
+                    params.options ==  "apply"
+                } 
+            }
+            steps {
+                sh """
+                  cd terraform
+                  terraform apply -var-file=${params.environment}/${params.environment}.tfvars -var ="app_version=${params.version}" -auto-approve
+                """
+            }
+        }
+        stage('terraform destroy') {
+             when { 
+                expression { 
+                    params.options ==  "destroy"
+                } 
+            } 
+            steps {
+                sh """
+                  cd terraform
+                  terraform destroy -var-file=${params.environment}/${params.environment}.tfvars -var ="app_version=${params.version}" -auto-approve
+                """
+            }
+        }
+
     }
     // Post Build
     post { 
