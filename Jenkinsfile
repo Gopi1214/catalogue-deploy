@@ -16,7 +16,7 @@ pipeline {
     parameters {
         string(name: 'version', defaultValue: '', description: 'what is the artifact version?')
         string(name: 'environment', defaultValue: '', description: 'what is the environment?')
-        string(name: 'options', choices: ['apply','destroy'], description: 'pick option u want?')
+        string(name: 'options', choices: ['apply', 'destroy'], description: 'pick option u want?')
     }
 
     // Build
