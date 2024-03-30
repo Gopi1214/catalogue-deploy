@@ -24,6 +24,11 @@ variable "zone_name" {
   default = "pjdevops.online"
 }
 
+variable "iam_instance_profile" {
+  default = "ShellScriptRoleForRoboshop"
+}
+
 variable "app_version" {
   
 }
+
