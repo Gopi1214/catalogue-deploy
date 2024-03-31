@@ -38,6 +38,11 @@ pipeline {
             }
         }
         stage('terraform plan') { 
+            when { 
+                expression { 
+                    params.options ==  "apply"
+                } 
+            }
             steps {
                 sh """
                   cd terraform
